@@ -1,0 +1,4 @@
+fastapi # project library
+fastapi-analytics # apianalytics.dev
+python-dotenv # load .env file
+uvicorn # fastapi runtime
