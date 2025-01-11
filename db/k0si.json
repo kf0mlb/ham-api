@@ -1,20 +1,33 @@
 {
-    "name":               "k0si",
-    "status":             "online",
-    "latitude":           38.9480,
-    "longitude":          -92.3235,
-    "frequency_downlink": "146.76000",
-    "frequency_uplink":   "146.16000",
-    "frequency_offset":   "-0.600 MHz",
-    "ctone_downlink":     "127.3",
-    "ctone_uplink":       "127.3",
-    "band":               "2m",
-    "bandwidth":          25.0,
-    "nets":               [{"day": "Wed", "time": "21:00", "name": "CMRA Club Net"}],
-    "country":            "United States",
-    "state":              "Missouri",
-    "county":             "Boone",
-    "grid":               "EM39UW",
-    "sponsor":            "Central Missouri Radio Association (CMRA)",
-    "coordination":       "Missouri Repeater Council (MRC)"
+    "callsign":     "k0si",
+    "sponsor":      "Central Missouri Radio Association (CMRA)",
+    "coordination": "Missouri Repeater Council (MRC)",
+    "status":       "online",
+    "band":         "2m",
+    "nets": [
+        {
+            "day": "Wed",
+            "time": "21:00",
+            "name": "CMRA Club Net"
+        }
+    ],
+    "access": {
+        "frequency_downlink": "146.76000",
+        "frequency_uplink":   "146.16000",
+        "frequency_offset":   "-0.600 MHz",
+        "ctone_downlink":     "127.3",
+        "ctone_uplink":       "127.3"
+    },
+    "location": {
+        "latitude":  38.9480,
+        "longitude": -92.3235,
+        "country":   "United States",
+        "state":     "Missouri",
+        "county":    "Boone",
+        "city":      "Columbia",
+        "grid":      "EM39UW"
+    },
+    "features": {
+        "fm_voice": "25.0 kHz"
+    }
 }

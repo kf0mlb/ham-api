@@ -38,4 +38,4 @@ async def get_repeater_grid(
     ## Returns:
     List of Repeaters: A list array of all repeaters.
     """
-    return [r for r in db if grid_id.lower() in r.grid.lower()]
+    return [r for r in db if grid_id.lower() in r.location.grid.lower()]

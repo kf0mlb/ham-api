@@ -14,28 +14,6 @@ class StatusEnum(str, Enum):
     OFFLINE = "offline"
 
 
-class DayEnum(str, Enum):
-    """Days of the Week."""
-    MONDAY = "Mon"
-    TUESDAY = "Tue"
-    WEDNESDAY = "Wed"
-    THURSDAY = "Thu"
-    FRIDAY = "Fri"
-    SATURDAY = "Sat"
-    SUNDAY = "Sun"
-
-
-class BandEnum(str, Enum):
-    """Bands that support repeaters."""
-    M10 = "10m"
-    M6 = "6m"
-    M2 = "2m"
-    M125 = "1.25m"
-    CM70 = "70cm"
-    CM33 = "33cm"
-    CM23 = "23cm"
-
-
 class CtcssToneEnum(str, Enum):
     """CTCSS Tones."""
     C670 = "67.0"
@@ -198,19 +176,7 @@ class DcsToneEnum(str, Enum):
     D754N = "D754N"
 
 
-class Nets(BaseModel):
-    """Pydantic Base Model for the Nets class."""
-    day: DayEnum
-    time: str
-    name: str
-
-
-class Repeaters(BaseModel):
-    """Pydantic Base Model for the Repeaters class."""
-    name:               str
-    status:             StatusEnum
-    latitude:           Optional[float] = None
-    longitude:          Optional[float] = None
+class Access(BaseModel):
     frequency_downlink: str
     frequency_uplink:   str
     frequency_offset:   str
@@ -218,12 +184,176 @@ class Repeaters(BaseModel):
     ctone_uplink:       Optional[CtcssToneEnum] = None
     dtone_downlink:     Optional[DcsToneEnum] = None
     dtone_uplink:       Optional[DcsToneEnum] = None
-    band:               BandEnum
-    bandwidth:          float
-    nets:               Optional[List[Nets]] = None
+
+
+class Location(BaseModel):
+    latitude:           Optional[float] = None
+    longitude:          Optional[float] = None
     country:            str
     state:              str
     county:             Optional[str] = None
+    city:               str
     grid:               str
+
+
+class DayEnum(str, Enum):
+    """Days of the Week."""
+    MONDAY = "Mon"
+    TUESDAY = "Tue"
+    WEDNESDAY = "Wed"
+    THURSDAY = "Thu"
+    FRIDAY = "Fri"
+    SATURDAY = "Sat"
+    SUNDAY = "Sun"
+
+
+class BandEnum(str, Enum):
+    """Bands that support repeaters."""
+    M10 = "10m"
+    M6 = "6m"
+    M2 = "2m"
+    M125 = "1.25m"
+    CM70 = "70cm"
+    CM33 = "33cm"
+    CM23 = "23cm"
+
+
+class Nets(BaseModel):
+    """Pydantic Base Model for the Nets class."""
+    day: DayEnum
+    time: str
+    name: str
+
+
+class AllStar(BaseModel):
+    allstar_node_num: int
+
+
+class DMRCCEnum(str, Enum):
+    CC0 = "CC0"
+    CC1 = "CC1"
+    CC2 = "CC2"
+    CC3 = "CC3"
+    CC4 = "CC4"
+    CC5 = "CC5"
+    CC6 = "CC6"
+    CC7 = "CC7"
+    CC8 = "CC8"
+    CC9 = "CC9"
+    CC10 = "CC10"
+    CC11 = "CC11"
+    CC12 = "CC12"
+    CC13 = "CC13"
+    CC14 = "CC14"
+    CC15 = "CC15"
+
+
+class DMR(BaseModel):
+    dmr_id: int
+    dmr_color_code: DMRCCEnum
+
+
+class DStarEnum(str, Enum):
+    GATEWAY = "Gateway Repeater"
+    STANDALONE = "Stand-alone Repeater"
+    ACCESSPOINT = "DV Access Point"
+    PERSONAL = "Personal Hot Spot"
+
+
+class DStar(BaseModel):
+    dstar_type: DStarEnum
+
+
+class Echolink(BaseModel):
+    echo_node_num: int
+    echo_callsign: str
+
+
+class FMVoiceEnum(str, Enum):
+    KHZ250 = "25.0 kHz"
+    KHZ125 = "12.5 kHz"
+
+
+class IRLP(BaseModel):
+    irlp_node_num: int
+
+
+class M17CANEnum(str, Enum):
+    CAN0 = "0"
+    CAN1 = "1"
+    CAN2 = "2"
+    CAN3 = "3"
+    CAN4 = "4"
+    CAN5 = "5"
+    CAN6 = "6"
+    CAN7 = "7"
+    CAN8 = "8"
+    CAN9 = "9"
+    CAN10 = "10"
+    CAN11 = "11"
+    CAN12 = "12"
+    CAN13 = "13"
+    CAN14 = "14"
+    CAN15 = "15"
+
+
+class M17(BaseModel):
+    can: M17CANEnum
+
+
+class NXDNBandwidthEnum(str, Enum):
+    KHZ0625 = "6.25 kHz"
+    KHZ1250 = "12.5 kHz"
+
+
+class NXDN(BaseModel):
+    ran: str
+    bandwidth: NXDNBandwidthEnum
+
+
+class P25(BaseModel):
+    nac: str
+
+
+class Tetra(BaseModel):
+    mcc: int
+    mnc: int
+
+
+class Wiresx(BaseModel):
+    """Pydantic Base Model for the WIRES-X class.
+
+    Yaesu Wide-Coverage Internet Repeater Enhancement System class.
+    """
+    id: int
+
+
+class Features(BaseModel):
+    """Pydantic Base Model for the Features class."""
+    allstar:    Optional[AllStar] = None
+    atv:        Optional[bool] = False
+    dmr:        Optional[DMR] = None
+    dstar:      Optional[DStar] = None
+    echolink:   Optional[Echolink] = None
+    fm_voice:   Optional[FMVoiceEnum] = None
+    irlp:       Optional[IRLP] = None
+    m17:        Optional[M17] = None
+    nxdn:       Optional[NXDN] = None
+    p25:        Optional[P25] = None
+    tetra:      Optional[Tetra] = None
+    wiresx:     Optional[Wiresx] = None
+    ysf:        Optional[bool] = False
+
+
+class Repeaters(BaseModel):
+    """Pydantic Base Model for the Repeaters class."""
+    callsign:           str
     sponsor:            str
+    group:              Optional[str] = None
     coordination:       str
+    status:             StatusEnum
+    access:             Access
+    location:           Location
+    features:           Features
+    band:               BandEnum
+    nets:               Optional[List[Nets]] = None
