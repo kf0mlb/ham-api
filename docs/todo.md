@@ -1,5 +1,6 @@
 # ToDo
 
+- [ ] add health check/ping endpoint
 - [ ] query by country
 - [ ] query by state
 - [ ] query by county
